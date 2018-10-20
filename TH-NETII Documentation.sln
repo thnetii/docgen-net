@@ -18,13 +18,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dotnet-common", "dotnet-com
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EC792418-4B64-41B7-9C77-3743FC40B2C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THNETII.Common", "dotnet-common\src\THNETII.Common\THNETII.Common.csproj", "{5714AFD8-5AE9-4299-B0AF-29789B5D8D1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "THNETII.Common", "dotnet-common\src\THNETII.Common\THNETII.Common.csproj", "{5714AFD8-5AE9-4299-B0AF-29789B5D8D1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THNETII.DependencyInjection", "dotnet-common\src\THNETII.DependencyInjection\THNETII.DependencyInjection.csproj", "{0321A19A-B00E-4E5F-8096-44117FBBC1B8}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "analysis", "analysis", "{752E6D73-0744-4FE9-BA2A-8AD1E572C0B7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THNETII.Common.Analyzers", "dotnet-common\analysis\THNETII.Common.Analyzers\THNETII.Common.Analyzers.csproj", "{E4D386B0-2495-42FF-BF1A-FD1345D3E36A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "THNETII.DependencyInjection", "dotnet-common\src\THNETII.DependencyInjection\THNETII.DependencyInjection.csproj", "{0321A19A-B00E-4E5F-8096-44117FBBC1B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,12 +30,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {B5180010-256C-494F-AB31-989B09FB550F}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{5714AFD8-5AE9-4299-B0AF-29789B5D8D1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -66,24 +56,16 @@ Global
 		{0321A19A-B00E-4E5F-8096-44117FBBC1B8}.Release|x64.Build.0 = Release|Any CPU
 		{0321A19A-B00E-4E5F-8096-44117FBBC1B8}.Release|x86.ActiveCfg = Release|Any CPU
 		{0321A19A-B00E-4E5F-8096-44117FBBC1B8}.Release|x86.Build.0 = Release|Any CPU
-		{E4D386B0-2495-42FF-BF1A-FD1345D3E36A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E4D386B0-2495-42FF-BF1A-FD1345D3E36A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E4D386B0-2495-42FF-BF1A-FD1345D3E36A}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{E4D386B0-2495-42FF-BF1A-FD1345D3E36A}.Debug|x64.Build.0 = Debug|Any CPU
-		{E4D386B0-2495-42FF-BF1A-FD1345D3E36A}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{E4D386B0-2495-42FF-BF1A-FD1345D3E36A}.Debug|x86.Build.0 = Debug|Any CPU
-		{E4D386B0-2495-42FF-BF1A-FD1345D3E36A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E4D386B0-2495-42FF-BF1A-FD1345D3E36A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E4D386B0-2495-42FF-BF1A-FD1345D3E36A}.Release|x64.ActiveCfg = Release|Any CPU
-		{E4D386B0-2495-42FF-BF1A-FD1345D3E36A}.Release|x64.Build.0 = Release|Any CPU
-		{E4D386B0-2495-42FF-BF1A-FD1345D3E36A}.Release|x86.ActiveCfg = Release|Any CPU
-		{E4D386B0-2495-42FF-BF1A-FD1345D3E36A}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{EC792418-4B64-41B7-9C77-3743FC40B2C9} = {FA950F87-D64A-47FA-AD6F-0ED5B4B7172E}
 		{5714AFD8-5AE9-4299-B0AF-29789B5D8D1F} = {EC792418-4B64-41B7-9C77-3743FC40B2C9}
 		{0321A19A-B00E-4E5F-8096-44117FBBC1B8} = {EC792418-4B64-41B7-9C77-3743FC40B2C9}
-		{752E6D73-0744-4FE9-BA2A-8AD1E572C0B7} = {FA950F87-D64A-47FA-AD6F-0ED5B4B7172E}
-		{E4D386B0-2495-42FF-BF1A-FD1345D3E36A} = {752E6D73-0744-4FE9-BA2A-8AD1E572C0B7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B5180010-256C-494F-AB31-989B09FB550F}
 	EndGlobalSection
 EndGlobal
