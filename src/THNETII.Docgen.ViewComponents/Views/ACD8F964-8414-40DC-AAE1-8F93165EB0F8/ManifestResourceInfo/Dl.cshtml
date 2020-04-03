@@ -1,0 +1,26 @@
+@inject IStringLocalizer<ManifestResourceInfo> ModelLocalizer
+@inject IStringLocalizer<ResourceLocation> ResourceLocationLocalizer
+@model ManifestResourceInfo
+
+<dl class="mb-0">
+    <dt title="@nameof(ManifestResourceInfo.ResourceLocation)">
+        @ModelLocalizer.GetStringOrFallback(nameof(ManifestResourceInfo.ResourceLocation))
+    </dt>
+    <dd title="@Model.ResourceLocation">
+        @Model.ResourceLocation.ToLocalizedString(ResourceLocationLocalizer)
+    </dd>
+    @if (Model.FileName is string fileName && !string.IsNullOrEmpty(fileName))
+    {
+        <dt title="@nameof(ManifestResourceInfo.FileName)">
+            @ModelLocalizer.GetStringOrFallback(nameof(ManifestResourceInfo.FileName))
+        </dt>
+        <dd>@fileName</dd>
+    }
+    @if (Model.ReferencedAssembly is Assembly refAsm)
+    {
+        <dt title="@nameof(ManifestResourceInfo.ReferencedAssembly)">
+            @ModelLocalizer.GetStringOrFallback(nameof(ManifestResourceInfo.ReferencedAssembly))
+        </dt>
+        <dd>@refAsm.FullName</dd>
+    }
+</dl>

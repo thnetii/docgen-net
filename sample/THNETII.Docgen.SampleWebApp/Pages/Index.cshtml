@@ -1,10 +1,44 @@
-﻿@page
+@page
+@using System.Runtime.Loader
+@using THNETII.Common.Reflection
 @model IndexModel
+
 @{
     ViewData["Title"] = "Home page";
+
+    var guid = THNETII.Docgen.ViewComponents.LibraryEmbedded.GuidString;
+
+    //ViewData["LocalResourceIcon"] = Url.Content($"~{Startup.ViewComponentsEmbeddedImagesPath}/vswin2019/LocalResources/LocalResources_16x.svg");
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>Assembly Load Context</h1>
+@{
+    var loadCtx = AssemblyLoadContext.CurrentContextualReflectionContext ??
+        AssemblyLoadContext.Default;
+}
+@if (loadCtx.Name is string ctxName && !string.IsNullOrEmpty(ctxName))
+{
+    <h2 class="text-muted">@ctxName</h2>
+}
+
+@if (loadCtx.Assemblies.Any())
+{
+    <h3>Assemblies</h3>
+
+    @foreach (var assembly in loadCtx.Assemblies)
+    {
+        var asmAttrs = new AssemblyAttributesAccessor(assembly);
+
+        <div class="row card">
+            <div class="card-body">
+                <h4 class="card-title" title="@assembly.FullName">
+                    @asmAttrs.AssemblyName.Name
+                </h4>
+
+                <h5>Manifest Resources</h5>
+                <partial name="@($"~/Views/{guid}/Assembly/ManifestResources.ListGroup.cshtml")"
+                         model="assembly" view-data="ViewData" />
+            </div>
+        </div>
+    }
+}

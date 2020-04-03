@@ -1,0 +1,41 @@
+@model Assembly
+@inject IStringLocalizer<ManifestResourceInfo> ManifestResourceInfoLocalizer
+
+@{
+    string guid = LibraryEmbedded.GuidString;
+    var resNames = Model.IsDynamic
+        ? Array.Empty<string>()
+        : Model.GetManifestResourceNames();
+
+    string resIcon = ViewData["LocalResourceIcon"] as string;
+}
+
+@if (resNames.Length > 0)
+{
+    <table class="table table-sm">
+        <tbody>
+            @foreach (string resName in resNames)
+            {
+                var resInfo = Model.GetManifestResourceInfo(resName);
+                <tr class="row">
+                    <th scope="row" class="col-sm-4">
+                        @if (!string.IsNullOrEmpty(resIcon))
+                        {
+                            <img class="vswin2019-icon" src="@resIcon" />
+                        }
+                        <code>@resName</code>
+                    </th>
+                    <td class="col-sm-8">
+                        <partial name="@($"~/Views/{guid}/ManifestResourceInfo/DlHorizontal.cshtml")" model="resInfo" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-secondary" role="alert">
+        @ManifestResourceInfoLocalizer.GetStringOrFallback("NoneContained")
+    </div>
+}

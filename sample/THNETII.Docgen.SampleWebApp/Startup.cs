@@ -1,18 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+
+using THNETII.Docgen.ViewComponents;
 
 namespace THNETII.Docgen.SampleWebApp
 {
     public class Startup
     {
+        public static readonly string ViewComponentsEmbeddedImagesPath =
+            $"/img/{typeof(EmbeddedImages).Assembly.GetName().Name}";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -24,6 +24,7 @@ namespace THNETII.Docgen.SampleWebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddLocalization();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +43,11 @@ namespace THNETII.Docgen.SampleWebApp
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = EmbeddedImages.FileProvider,
+                RequestPath = ViewComponentsEmbeddedImagesPath,
+            });
 
             app.UseRouting();
 

@@ -1,0 +1,42 @@
+@model Assembly
+@inject IStringLocalizer<ManifestResourceInfo> ManifestResourceInfoLocalizer
+
+@{
+    string guid = LibraryEmbedded.GuidString;
+    var resNames = Model.IsDynamic
+        ? Array.Empty<string>()
+        : Model.GetManifestResourceNames();
+
+    string resIcon = ViewData["LocalResourceIcon"] as string;
+}
+
+<div class="list-group list-group-flush">
+    @foreach (string resName in resNames)
+    {
+        var resInfo = Model.GetManifestResourceInfo(resName);
+        <div class="list-group-item">
+            <div class="row">
+                @{
+                    string mainColClass = "col-12";
+                }
+                @if (!string.IsNullOrEmpty(resIcon))
+                {
+                    mainColClass = "col-11";
+                    <div class="col-1">
+                        <img class="vswin2019-icon" src="@resIcon" />
+                    </div>
+                }
+                <div class="@mainColClass">
+                    <h5 title="@resName" class="text-truncate">@resName</h5>
+                    <partial name="@($"~/Views/{guid}/ManifestResourceInfo/Dl.cshtml")" model="resInfo" />
+                </div>
+            </div>
+        </div>
+    }
+    @if (resNames.Length == 0)
+    {
+        <div class="list-group-item list-group-item-secondary">
+            @ManifestResourceInfoLocalizer.GetStringOrFallback("NoneContained")
+        </div>
+    }
+</div>
